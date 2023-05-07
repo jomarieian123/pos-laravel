@@ -144,15 +144,15 @@ class ProductController extends Controller
     }
     public function search(Request $request)
     {
-        $search_text = $_GET['query'];
-            if(isset($search_text )){
-              $product = DB::table('product')->where('name','LIKE','%'.$search_text.'%')->get();
-                return view('receiving.index',['products'=>$product]);
-            }
-            else{
+        // $search_text = $_GET['query'];
+        //     if(isset($search_text )){
+        //       $product = DB::table('products')->where('name','LIKE','%'.$search_text.'%')->get();
+        //         return view('receiving.direct',['products'=>$product]);
+        //     }
+        //     else{
 
-                return view('receiving.index');
-            }
+        //         return view('receiving.direct');
+        //     }
         // $search_text = $_GET['query'];
         // $product = Product::where('name','LIKE','%'.$search_text.'%')->get();
     //     $products = $products->where('name', 'LIKE', "%{$request->search}%");

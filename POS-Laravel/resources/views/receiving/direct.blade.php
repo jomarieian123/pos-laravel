@@ -2,15 +2,15 @@
 @section('content')
 
 @section('title', 'Receiving')
-@section('content-header', 'Receiving')
+@section('content-header', 'Direct Receiving')
    
     @section('content-actions')
-    <a href="{{route('receiving.direct')}}" class="btn btn-success"><i class="fas fa-plus"></i> Direct Receving</a>
-    <a href="{{route('receiving.create')}}" class="btn btn-success"><i class="fas fa-plus"></i> Create Receving</a>
-    {{-- <form class="form-inline my-2 my-lg-0 " type = "GET" action="{{ route('searchbar') }}">
+    {{-- <a href="{{route('receiving.direct')}}" class="btn btn-success"><i class="fas fa-plus"></i> rd</a> --}}
+    <form class="form-inline my-2 my-lg-0 " type = "GET" action="{{ route('searchbar') }}">
         <input type="search" name="query" id="" class="form-control mr-sm-2" placeholder="Search Product">
         <button class="btn btn-primary " type="submit">Search</button>
-    </form> --}}
+    </form>
+    {{-- <a href="{{route('receiving.create')}}" class="btn btn-success"><i class="fas fa-plus"></i> Create Receving</a> --}}
         {{-- <div class="form-floating">
             <select class="form-select my-2 my-lg-0" id="floatingSelect" aria-label="Floating label select example">
             <option selected></option>
@@ -27,22 +27,7 @@
 @section('content')
 <div class="card product-list"><!-- Log on to codeastro.com for more projects -->
     <div class="card-body">
-        
-            
-                <form action="{{route('receiving.index')}}">
-                    <div class="row">  
-                        <div class="col-md-5">
-                            <input type="date" name="start_date" class="form-control" value="{{request('start_date')}}" />
-                        </div>  
-                        <div class="col-md-5">
-                            <input type="date" name="end_date" class="form-control" value="{{request('end_date')}}" />
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Filter</button>
-                        </div>
-                    </div>
-                </form>
-        <br>
+
         @if(isset($products))
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
@@ -55,6 +40,16 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($products) > 0 ) 
+                    @foreach ( $products as $product )
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                        </tr>
+                    @endforeach
+                @else 
+                    <tr><td><h3>DATA NOT FOUND</h3></td></tr>
+                @endif
                 {{-- @foreach ($orders as $order) --}}
                 <tr>
                     {{-- <td>{{$order->id}}</td>
@@ -75,15 +70,12 @@
                     <td>{{config('settings.currency_symbol')}} {{number_format($order->total() - $order->receivedAmount(), 2)}}</td>
                     <td>{{$order->created_at}}</td>
                     <td><button class="btn btn-primary" ><i class="fas fa-eye"></i></button></td> --}}
-                    <td> 1</td>
-                    <td> ian</td>
-                    <td> 1000</td>
-                    <td> <span class="badge badge-warning">Pending</span></td>
+                    {{-- <td> <span class="badge badge-warning">Pending</span></td>
                     <td>
                         <button class="btn btn-primary" >Received</button>
                         <button class="btn btn-danger btn-delete">cancel</button>
                         
-                        </td>
+                        </td> --}}
                 </tr>
                 {{-- @endforeach --}}
 
@@ -100,8 +92,8 @@
                 </tr>
             </tfoot>
         </table>
+        {{ $products->render()}}
         @endif
-        {{-- {{ $orders->render() }} --}}
     </div>
 </div><!-- Log on to codeastro.com for more projects -->
 

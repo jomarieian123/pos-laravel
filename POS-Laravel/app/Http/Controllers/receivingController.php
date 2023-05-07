@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\ProductResource;
+
+
 
 class receivingController extends Controller
 {
@@ -80,5 +84,33 @@ class receivingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function directReceiving()
+    {
+        return view('receiving.direct');
+    }
+
+    public function search(Request $request)
+    {
+        
+        
+            if(isset($_GET['query'])){
+            
+            $search_text = $_GET['query'];
+            
+            $product = DB::table('products')->where('name','LIKE','%'.$search_text.'%')->paginate(2);
+                $product->appends($request->all());
+            //   $product->paginate(10);
+                return view('receiving.direct',['products'=>$product]);
+            }
+            else{
+                return view('receiving.direct');            
+            }
+        // $search_text = $_GET['query'];
+        // $product = Product::where('name','LIKE','%'.$search_text.'%')->get();
+    //     $products = $products->where('name', 'LIKE', "%{$request->search}%");
+    
+    // return ;
     }
 }

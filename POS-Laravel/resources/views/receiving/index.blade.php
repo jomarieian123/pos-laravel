@@ -5,8 +5,8 @@
 @section('content-header', 'Receiving')
    
     @section('content-actions')
-    <a href="{{route('receiving.direct')}}" class="btn btn-success"><i class="fas fa-plus"></i> Direct Receving</a>
-    <a href="{{route('receiving.create')}}" class="btn btn-success"><i class="fas fa-plus"></i> Create Receving</a>
+    <a href="{{route('directReceiving')}}" class="btn btn-success"><i class="fas fa-plus"></i> Direct Receving</a>
+    <a href="" class="btn btn-success"><i class="fas fa-plus"></i> Create Receving</a>
     {{-- <form class="form-inline my-2 my-lg-0 " type = "GET" action="{{ route('searchbar') }}">
         <input type="search" name="query" id="" class="form-control mr-sm-2" placeholder="Search Product">
         <button class="btn btn-primary " type="submit">Search</button>
