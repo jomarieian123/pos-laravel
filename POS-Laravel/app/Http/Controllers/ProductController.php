@@ -144,6 +144,13 @@ class ProductController extends Controller
     }
     public function search(Request $request)
     {
+
+        $search = $request->input('search');
+
+        $member = Product::where('name','like',"%$search%")->get(); 
+
+        return view('products.result')->with('members',$member);
+
         // $search_text = $_GET['query'];
         //     if(isset($search_text )){
         //       $product = DB::table('products')->where('name','LIKE','%'.$search_text.'%')->get();

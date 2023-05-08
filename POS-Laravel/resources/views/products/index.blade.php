@@ -3,10 +3,20 @@
 @section('title', 'Product Management')
 @section('content-header', 'Product Management')
 @section('content-actions')
-<form class="form-inline my-2 my-lg-0 " type = "GET" action="{{ route('searchbar') }}" >
-    <input type="search" name="query" id="search" class="form-control mr-sm-2" placeholder="Search Product">
+{{-- <form class="form-inline my-2 my-lg-0 " type = "GET" action="">
+    <input type="text" name="search" id="search" class="form-control mr-sm-2" placeholder="Search Product" autocomplete="off">
+    <button class="btn btn-primary " type="submit">Search</button>
+</form> --}}
+<form class="form-inline my-2 my-lg-0 " type = "GET" action="">
+    <input type="text" name="search" id="search" class="form-control mr-sm-2" placeholder="Search Product" autocomplete="off">
     <button class="btn btn-primary " type="submit">Search</button>
 </form>
+<div id="result" class="panel panel-default" style="display:none">
+    <ul class="list-group" id="memlist">
+    
+    
+    </ul>    
+</div>
 <a href="{{route('products.create')}}" class="btn btn-success"><i class="fas fa-plus"></i> Add New Product</a>
 @endsection
 @section('css')
@@ -95,5 +105,23 @@
             })
         })
     })
+
+    $(document).ready(function(){
+
+    $('#search').keyup(function(){
+
+        var search = $('#search').val();
+        if(search ==""){
+            $("#memlist").html("");
+            $("#result").hide();
+        }
+        else{
+                $.get("{{ URL::to('search-product') }}",{search:search}, function(data){
+                    $('#memlist').empty().html(data);
+                    $('#result').show();
+                })
+            }
+         });
+    });
 </script>
 @endsection

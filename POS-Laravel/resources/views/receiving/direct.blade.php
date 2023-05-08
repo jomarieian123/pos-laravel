@@ -9,7 +9,11 @@
     <form class="form-inline my-2 my-lg-0 " type = "GET" action="{{ route('searchbar') }}">
         <input type="search" name="query" id="" class="form-control mr-sm-2" placeholder="Search Product">
         <button class="btn btn-primary " type="submit">Search</button>
-    </form>
+    </form> 
+    <div id = "result" class="panel panel-default" style="display:none">
+        <ul class="list-group" id="memlist">
+            </ul>    
+    </div>
     {{-- <a href="{{route('receiving.create')}}" class="btn btn-success"><i class="fas fa-plus"></i> Create Receving</a> --}}
         {{-- <div class="form-floating">
             <select class="form-select my-2 my-lg-0" id="floatingSelect" aria-label="Floating label select example">
@@ -133,6 +137,8 @@
             })
         })
     })
- 
+
+
+
 </script>
 @endsection

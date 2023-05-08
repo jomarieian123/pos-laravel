@@ -35,7 +35,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
    
 
     Route::get('/direct-receiving',[receivingController::class, 'directReceiving'])->name('directReceiving');
-    
+
+    Route::get('/search-product',[ProductController::class, 'search']);
+   
     // Route::get('/user-setup/index-user',[userController::class,'index']);
     // Route::get('/user-setup/edit-user',[userController::class,'edit']);
     // Route::put('/user-setup/update-user',[userController::class,'update']);
